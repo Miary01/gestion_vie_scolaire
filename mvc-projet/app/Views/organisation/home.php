@@ -66,31 +66,23 @@
         <!-- ================= CONTENT ================= -->
         <div class="content">
 
-            <div class="welcome-banner" style="background-image:url('https://images.unsplash.com/photo-1706193589333-da530df63ecf?auto=format&fit=crop&w=1200&q=80');">
-                <div class="welcome-banner__content">
-                    <span class="welcome-banner__eyebrow"><i class="ti ti-flag-3"></i> Espace organisation</span>
-                    <h1>Organisez des événements mémorables</h1>
-                    <p>Créez des compétitions, suivez les participants et faites rayonner vos événements auprès des établissements.</p>
-                </div>
-            </div>
-
             <!-- ================= STATS ================= -->
             <div class="stats">
                 <div class="stat-card">
-                    <p class="label">Événements organisés</p>
-                    <p class="value">8</p>
+                    <p class="label">Événements créés</p>
+                    <p class="value"><?= (int)$stats['evenements'] ?></p>
                 </div>
                 <div class="stat-card">
-                    <p class="label">Compétitions en cours</p>
-                    <p class="value">2</p>
+                    <p class="label">Dont à venir</p>
+                    <p class="value"><?= (int)$stats['evenements_avenir'] ?></p>
                 </div>
                 <div class="stat-card">
-                    <p class="label">Établissements inscrits</p>
-                    <p class="value">14</p>
+                    <p class="label">Compétitions créées</p>
+                    <p class="value"><?= (int)$stats['competitions'] ?></p>
                 </div>
                 <div class="stat-card">
-                    <p class="label">Demandes en attente</p>
-                    <p class="value">3</p>
+                    <p class="label">Dont à venir</p>
+                    <p class="value"><?= (int)$stats['competitions_avenir'] ?></p>
                 </div>
             </div>
 

@@ -65,9 +65,8 @@ roleSelect.addEventListener("change", function () {
 });
 //---------------------------la recherche de region --------------------------------//
 document.querySelectorAll(".regionInput").forEach(input => {
-    const wrap = input.closest(".form-group");
-    const box = wrap.querySelector(".suggestions");
-    const hidden = wrap.querySelector(".regionId");
+    const box = input.parentElement.querySelector(".suggestions");
+    const hidden = input.parentElement.querySelector(".regionId");
     input.addEventListener("input", function () {
         hidden.value = "";
         const query = this.value;

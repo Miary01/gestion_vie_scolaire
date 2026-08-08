@@ -241,7 +241,7 @@ async function voirMesEvenements() {
                 ${
                     data.evenements.length === 0
                     ?
-                    "<p>Aucun événement créé.</p>"
+                    "<p class='organisation-empty'><img src='/assets/images/illustration-calendar.svg' alt='' width='130' height='104' style='display:block;margin:0 auto 10px;'>Aucun événement créé.</p>"
                     :
                     data.evenements.map(evenement => `
                         <div class="organisation-card"
@@ -316,7 +316,7 @@ async function voirMesCompetitions() {
                 ${
                     data.competitions.length === 0
                     ?
-                    "<p>Aucune compétition créée.</p>"
+                    "<p class='organisation-empty'><img src='/assets/images/illustration-calendar.svg' alt='' width='130' height='104' style='display:block;margin:0 auto 10px;'>Aucune compétition créée.</p>"
                     :
                     data.competitions.map(competition => `
                         <div class="organisation-card"
@@ -382,7 +382,7 @@ function afficherParticipants(
             ${
                 participants.length === 0
                 ?
-                "<p>Aucun participant.</p>"
+                "<p class='organisation-empty'><img src='/assets/images/illustration-empty-box.svg' alt='' width='120' height='96' style='display:block;margin:0 auto 10px;'>Aucun participant.</p>"
                 :
                 participants.map(participant => `
                     <div class="participant-card"

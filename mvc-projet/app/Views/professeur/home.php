@@ -55,22 +55,26 @@
 
             <div class="content">
 
-                <div class="welcome-banner" style="background-image:url('https://images.unsplash.com/photo-1758685848174-e061c6486651?auto=format&fit=crop&w=1200&q=80');">
-                    <div class="welcome-banner__content">
-                        <span class="welcome-banner__eyebrow"><i class="ti ti-chalkboard"></i> Espace professeur</span>
-                        <h1>Partagez votre savoir avec vos élèves</h1>
-                        <p>Publiez des exercices, suivez vos candidatures aux offres et restez connecté aux établissements.</p>
-                    </div>
-                </div>
-
                 <div class="stats">
                     <div class="stat-card stat-card--accent">
                         <p class="label">Exercices envoyés</p>
                         <p class="value"><?= (int)$nb_exercices ?></p>
                     </div>
                     <div class="stat-card">
+                        <p class="label">Offres disponibles</p>
+                        <p class="value"><?= count($offresRegion) ?></p>
+                    </div>
+                    <div class="stat-card">
                         <p class="label">Candidatures envoyées</p>
                         <p class="value"><?= (int)$nb_candidatures ?></p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="label">En attente de réponse</p>
+                        <p class="value"><?= count(array_filter($mesCandidatures, fn($s) => $s === 'en_attente')) ?></p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="label">Candidatures acceptées</p>
+                        <p class="value"><?= count(array_filter($mesCandidatures, fn($s) => $s === 'acceptee')) ?></p>
                     </div>
                 </div>
 
@@ -113,7 +117,7 @@
 
                         <?php if (empty($derniersExercices)): ?>
                             <div class="empty-state">
-                                <i class="ti ti-file-off"></i>
+                                <img src="/assets/images/illustration-document.svg" alt="" width="140" height="112" loading="lazy">
                                 <p>Aucun exercice envoyé pour le moment.</p>
                             </div>
                         <?php else: ?>
@@ -154,7 +158,7 @@
 
                     <?php if (empty($offresRegion)): ?>
                         <div class="empty-state">
-                            <i class="ti ti-briefcase-off"></i>
+                            <img src="/assets/images/illustration-briefcase.svg" alt="" width="140" height="112" loading="lazy">
                             <p>Aucune offre disponible dans ta région pour le moment.</p>
                         </div>
                     <?php else: ?>
@@ -185,12 +189,32 @@
                                                 Postuler
                                             </button>
                                         </form>
-                                    <?php elseif ($statutCandidature === 'en_attente'): ?>
-                                        <span class="offre-statut offre-statut--attente">En attente</span>
-                                    <?php elseif ($statutCandidature === 'acceptee'): ?>
-                                        <span class="offre-statut offre-statut--acceptee">Acceptée</span>
                                     <?php else: ?>
-                                        <span class="offre-statut offre-statut--refusee">Refusée</span>
+                                        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+                                            <?php if ($statutCandidature === 'en_attente'): ?>
+                                                <span class="offre-statut offre-statut--attente">En attente</span>
+                                            <?php elseif ($statutCandidature === 'acceptee'): ?>
+                                                <span class="offre-statut offre-statut--acceptee">Acceptée</span>
+                                            <?php else: ?>
+                                                <span class="offre-statut offre-statut--refusee">Refusée</span>
+                                            <?php endif; ?>
+
+                                            <?php
+                                                $sujetContact = "À propos de ma candidature — " . $offre['titre'];
+                                                $messageContact = match ($statutCandidature) {
+                                                    'acceptee' => "Bonjour,\n\nJe vous remercie d'avoir accepté ma candidature au poste « {$offre['titre']} ». Je reste à votre disposition pour organiser la suite.\n\nCordialement.",
+                                                    'refusee'  => "Bonjour,\n\nJe vous remercie pour l'étude de ma candidature au poste « {$offre['titre']} ». Auriez-vous un retour à me communiquer pour mes prochaines candidatures ?\n\nCordialement.",
+                                                    default    => "Bonjour,\n\nJe me permets de revenir vers vous au sujet de ma candidature au poste « {$offre['titre']} », envoyée récemment. Reste-t-elle à l'étude ?\n\nCordialement.",
+                                                };
+                                                $lienContact = 'https://mail.google.com/mail/?view=cm&fs=1'
+                                                    . '&to=' . urlencode($offre['mail_etablissement'])
+                                                    . '&su=' . urlencode($sujetContact)
+                                                    . '&body=' . urlencode($messageContact);
+                                            ?>
+                                            <a href="<?= htmlspecialchars($lienContact) ?>" target="_blank" rel="noopener" class="ghost offre-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; font-size:12.5px;">
+                                                <i class="ti ti-mail"></i> Contacter
+                                            </a>
+                                        </div>
                                     <?php endif; ?>
                                 </li>
                             <?php endforeach; ?>

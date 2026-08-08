@@ -132,6 +132,32 @@ En complément de la restructuration MVC, la plateforme a reçu :
   événements/compétitions/participants pour l'organisation). Aucune requête
   serveur supplémentaire : la recherche porte sur les données déjà chargées.
 
+- **Des tableaux de bord enrichis avec de vraies statistiques** : chaque
+  compte affiche désormais des chiffres calculés depuis la base (et non
+  plus des valeurs factices codées en dur, comme c'était le cas sur le
+  tableau de bord organisation avant cette passe). Établissement : offres
+  publiées/ouvertes, candidatures reçues/en attente/acceptées. Professeur :
+  offres disponibles, candidatures en attente/acceptées. Client : professeurs
+  et établissements de sa région, événements et compétitions à venir.
+  Organisation : événements et compétitions créés, dont à venir.
+- **Une communication par email entre professeurs et établissements** :
+  un bouton « Contacter » (ouvrant un brouillon Gmail pré-rempli, sur le
+  même principe que la prise de contact déjà utilisée côté client) est
+  disponible aux deux endroits :
+  - côté établissement, sur chaque candidature reçue, avec un message
+    adapté au statut (relance, confirmation d'acceptation, réponse de refus) ;
+  - côté professeur, dès qu'une candidature a été envoyée, pour relancer,
+    remercier ou demander un retour selon le statut.
+- **Des illustrations SVG maison** (`public/assets/images/`), sans aucune
+  dépendance à un service externe : une image d'accueil sur les pages de
+  connexion/inscription, et des illustrations pour les états vides
+  (aucune offre, aucun exercice, aucun événement, aucun utilisateur...),
+  toutes dans la palette du thème unifié.
+- **Un bug d'accessibilité mobile préexistant corrigé** : la barre de
+  recherche était entièrement masquée sur petit écran (≤560-640px) sur
+  les 4 comptes concernés, sans alternative. Elle passe désormais sur
+  sa propre ligne au lieu de disparaître.
+
 ## Limites connues (héritées du projet d'origine, non corrigées ici)
 
 - Les identifiants de connexion à la base sont en clair par défaut

@@ -11,14 +11,33 @@
     /* ==================================================
        RECRUTEMENT — styles dédiés
        ================================================== */
-    .rec-intro { color: #6b7280; font-size: 13.5px; margin: 4px 0 18px; }
+    .rec-intro { color: var(--color-text-muted); font-size: 13.5px; margin: 4px 0 18px; }
+
+    .rec-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 14px;
+        margin-bottom: 24px;
+    }
+    .rec-stat-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: 16px 18px;
+        box-shadow: var(--shadow-sm);
+    }
+    .rec-stat-card .rec-stat-label { font-size: 12.5px; color: var(--color-text-muted); margin: 0 0 4px; }
+    .rec-stat-card .rec-stat-value { font-size: 24px; font-weight: 700; color: var(--color-text); margin: 0; }
+    .rec-stat-card.rec-stat-card--accent .rec-stat-value { color: var(--color-primary); }
+    .rec-stat-card.rec-stat-card--warning .rec-stat-value { color: var(--color-warning); }
+    .rec-stat-card.rec-stat-card--success .rec-stat-value { color: var(--color-success); }
 
     .rec-form {
-        background: #fff;
-        border: 1px solid rgba(0,0,0,0.08);
-        border-radius: 16px;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
         padding: 20px 22px;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        box-shadow: var(--shadow-sm);
         margin-bottom: 26px;
         display: flex;
         flex-direction: column;
@@ -27,67 +46,69 @@
 
     .rec-form h4 {
         margin: 0;
-        font-family: "Fraunces", Georgia, serif;
+        font-family: var(--font-base);
         font-weight: 600;
         font-size: 17px;
+        color: var(--color-text);
     }
 
     .rec-field { display: flex; flex-direction: column; gap: 6px; }
-    .rec-field label { font-size: 13px; font-weight: 600; color: #1f2937; }
+    .rec-field label { font-size: 13px; font-weight: 600; color: var(--color-text); }
 
     .rec-field input[type="text"],
     .rec-field textarea {
         font-family: inherit;
         font-size: 14px;
         padding: 10px 12px;
-        border: 1px solid rgba(0,0,0,0.12);
-        border-radius: 10px;
-        background: #fafaf8;
-        color: #1f2937;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg);
+        color: var(--color-text);
         outline: none;
         resize: vertical;
         transition: border-color .15s ease, box-shadow .15s ease;
     }
     .rec-field input[type="text"]:focus,
     .rec-field textarea:focus {
-        border-color: var(--fill-warning, #C97F2E);
-        box-shadow: 0 0 0 3px rgba(201,127,46,0.15);
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px var(--color-primary-light);
     }
 
     .rec-submit {
         align-self: flex-start;
-        background: var(--fill-warning, #C97F2E);
-        color: #26170A;
+        background: var(--color-primary);
+        color: #fff;
         border: none;
-        border-radius: 10px;
+        border-radius: var(--radius-sm);
         padding: 10px 18px;
         font-size: 13.5px;
         font-weight: 700;
         cursor: pointer;
+        transition: background .15s ease;
     }
-    .rec-submit:hover { filter: brightness(1.05); }
+    .rec-submit:hover { background: var(--color-primary-dark); }
 
     .rec-notice {
         display: flex;
         align-items: center;
         gap: 8px;
         padding: 11px 14px;
-        border-radius: 10px;
+        border-radius: var(--radius-sm);
         font-size: 13.5px;
         font-weight: 600;
         margin-bottom: 18px;
-        background: #E4F0E8;
-        color: #295A3F;
+        background: var(--color-success-light);
+        color: var(--color-success);
     }
 
     .rec-offres { display: flex; flex-direction: column; gap: 16px; }
 
     .rec-offre-card {
-        background: #fff;
-        border: 1px solid rgba(0,0,0,0.08);
-        border-radius: 16px;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
         padding: 18px 20px;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        box-shadow: var(--shadow-sm);
     }
 
     .rec-offre-head {
@@ -99,9 +120,9 @@
         margin-bottom: 8px;
     }
 
-    .rec-offre-titre { margin: 0; font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 16.5px; }
-    .rec-offre-date { margin: 2px 0 0; font-size: 11.5px; color: #9ca3af; font-family: "IBM Plex Mono", monospace; }
-    .rec-offre-desc { margin: 0 0 12px; font-size: 13.5px; color: #4b5563; line-height: 1.5; }
+    .rec-offre-titre { margin: 0; font-family: var(--font-base); font-weight: 600; font-size: 16.5px; color: var(--color-text); }
+    .rec-offre-date { margin: 2px 0 0; font-size: 11.5px; color: var(--color-text-muted); }
+    .rec-offre-desc { margin: 0 0 12px; font-size: 13.5px; color: var(--color-text-muted); line-height: 1.5; }
 
     .rec-badge {
         display: inline-flex;
@@ -110,52 +131,55 @@
         font-size: 11.5px;
         font-weight: 700;
         padding: 4px 10px;
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
         white-space: nowrap;
     }
-    .rec-badge--ouverte { background: rgba(63,125,92,0.14); color: var(--fill-success, #3F7D5C); }
-    .rec-badge--fermee  { background: rgba(107,114,128,0.14); color: #6b7280; }
+    .rec-badge--ouverte { background: var(--color-success-light); color: var(--color-success); }
+    .rec-badge--fermee  { background: var(--color-surface-alt); color: var(--color-text-muted); }
 
-    .rec-candidatures { border-top: 1px dashed rgba(0,0,0,0.1); margin-top: 8px; padding-top: 12px; }
-    .rec-candidatures-titre { margin: 0 0 8px; font-size: 12.5px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: .05em; }
+    .rec-candidatures { border-top: 1px dashed var(--color-border); margin-top: 8px; padding-top: 12px; }
+    .rec-candidatures-titre { margin: 0 0 8px; font-size: 12.5px; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: .05em; }
 
     .rec-candidature-item {
         display: flex;
         align-items: center;
         gap: 12px;
         padding: 10px 0;
-        border-bottom: 1px solid rgba(0,0,0,0.06);
+        border-bottom: 1px solid var(--color-border);
+        flex-wrap: wrap;
     }
     .rec-candidature-item:last-child { border-bottom: none; }
 
     .rec-cand-avatar {
         width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%;
-        background: var(--fill-accent, #35708C); color: #fff;
+        background: var(--color-info); color: #fff;
         display: grid; place-items: center; font-size: 13px; font-weight: 700;
     }
 
-    .rec-cand-texts { flex: 1; min-width: 0; }
-    .rec-cand-nom { margin: 0; font-size: 13.5px; font-weight: 600; }
-    .rec-cand-mail { margin: 1px 0 0; font-size: 12px; color: #6b7280; word-break: break-all; }
+    .rec-cand-texts { flex: 1; min-width: 160px; }
+    .rec-cand-nom { margin: 0; font-size: 13.5px; font-weight: 600; color: var(--color-text); }
+    .rec-cand-mail { margin: 1px 0 0; font-size: 12px; color: var(--color-text-muted); word-break: break-all; }
 
     .rec-cand-statut {
-        font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; flex-shrink: 0;
+        font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-pill); flex-shrink: 0;
     }
-    .rec-cand-statut--en_attente { background: rgba(201,127,46,0.14); color: var(--fill-warning, #C97F2E); }
-    .rec-cand-statut--acceptee   { background: rgba(63,125,92,0.14); color: var(--fill-success, #3F7D5C); }
-    .rec-cand-statut--refusee    { background: rgba(178,70,50,0.14); color: var(--fill-danger, #B24632); }
+    .rec-cand-statut--en_attente { background: var(--color-warning-light); color: var(--color-warning); }
+    .rec-cand-statut--acceptee   { background: var(--color-success-light); color: var(--color-success); }
+    .rec-cand-statut--refusee    { background: var(--color-danger-light); color: var(--color-danger); }
 
-    .rec-cand-actions { display: flex; gap: 6px; flex-shrink: 0; }
+    .rec-cand-actions { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; }
     .rec-cand-actions form { margin: 0; }
     .rec-cand-btn {
-        border: none; border-radius: 8px; padding: 6px 10px;
+        border: none; border-radius: var(--radius-sm); padding: 6px 10px;
         font-size: 12px; font-weight: 700; cursor: pointer;
+        text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
     }
-    .rec-cand-btn--accepter { background: rgba(63,125,92,0.14); color: var(--fill-success, #3F7D5C); }
-    .rec-cand-btn--refuser  { background: rgba(178,70,50,0.14); color: var(--fill-danger, #B24632); }
+    .rec-cand-btn--accepter { background: var(--color-success-light); color: var(--color-success); }
+    .rec-cand-btn--refuser  { background: var(--color-danger-light); color: var(--color-danger); }
+    .rec-cand-btn--contact  { background: var(--color-info-light); color: var(--color-info); }
     .rec-cand-btn:hover { filter: brightness(0.95); }
 
-    .rec-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 13.5px; }
+    .rec-empty { padding: 24px; text-align: center; color: var(--color-text-muted); font-size: 13.5px; }
 </style>
 </head>
 <body>
@@ -223,14 +247,6 @@
 
         <!-- CONTENU -->
         <div id="contenuPrincipal" class="content">
-
-            <div class="welcome-banner" style="background-image:url('https://images.unsplash.com/photo-1638920329718-ad6f890bb311?auto=format&fit=crop&w=1200&q=80');">
-                <div class="welcome-banner__content">
-                    <span class="welcome-banner__eyebrow"><i class="ti ti-building"></i> Espace établissement</span>
-                    <h1>Recrutez et gérez votre personnel</h1>
-                    <p>Publiez des offres, examinez les candidatures et gardez le contact avec les professeurs de votre région.</p>
-                </div>
-            </div>
 
             <div class="section-header">
                 <h3>Accès rapide</h3>

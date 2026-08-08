@@ -499,7 +499,10 @@ async function afficherExercicesProfesseur(idProfesseur, nomProfesseur) {
         if (!liste) return; // l'utilisateur a déjà changé de vue entre-temps
 
         if (!exercices.length) {
-            liste.innerHTML = `<li class="exo-empty">Ce professeur n'a envoyé aucun exercice pour le moment.</li>`;
+            liste.innerHTML = `<li class="exo-empty">
+                <img src="/assets/images/illustration-document.svg" alt="" width="110" height="88" style="display:block;margin:0 auto 8px;">
+                Ce professeur n'a envoyé aucun exercice pour le moment.
+            </li>`;
             return;
         }
 

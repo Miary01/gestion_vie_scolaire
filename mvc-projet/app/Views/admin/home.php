@@ -49,14 +49,6 @@
         </div>
       <?php endif; ?>
 
-      <div class="welcome-banner" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80');">
-        <div class="welcome-banner__content">
-          <span class="welcome-banner__eyebrow"><i class="ti ti-shield-check"></i> Administration</span>
-          <h1>Vue d'ensemble de la plateforme</h1>
-          <p>Suivez l'activité de tous les comptes et gérez les utilisateurs depuis un seul endroit.</p>
-        </div>
-      </div>
-
       <div id="apercu">
         <div class="section-header"><h3>Vue d'ensemble de la plateforme</h3></div>
         <div class="stats">
@@ -104,7 +96,10 @@
           <div class="card" style="padding:0;" data-search-container>
 
             <?php if (empty($utilisateurs)): ?>
-              <p style="padding:16px; color:var(--text-secondary);">Aucun utilisateur pour le moment.</p>
+              <div style="padding:24px; text-align:center; color:var(--text-secondary);">
+                <img src="/assets/images/illustration-empty-box.svg" alt="" width="130" height="104" style="display:block;margin:0 auto 10px;">
+                Aucun utilisateur pour le moment.
+              </div>
             <?php else: ?>
               <?php foreach ($utilisateurs as $u): ?>
                 <?php

@@ -30,7 +30,7 @@
 
 body {
     margin: 0;
-    font-family: var(--font-base, "Segoe UI", system-ui, sans-serif);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
     background: var(--bg-page);
     color: var(--text-primary);
 }
@@ -144,7 +144,6 @@ input, select, textarea { font-family: inherit; }
 
 .greeting h1 {
     margin: 0;
-    font-family: var(--font-display, inherit);
     font-size: 20px;
     font-weight: 700;
 }
@@ -615,7 +614,9 @@ button.ghost:hover { background: var(--bg-page); }
 
 @media (max-width: 560px) {
     .stats { grid-template-columns: 1fr; }
-    .topbar { padding: 16px; }
+    .topbar { padding: 16px; flex-wrap: wrap; }
+    .topbar-actions { flex-wrap: wrap; width: 100%; }
+    .search { order: 10; width: 100%; flex-basis: 100%; margin-top: 8px; }
     .content { padding: 20px 16px 40px; }
-    .search { display: none; }
+    .organisation-empty img { width: 100px !important; height: 80px !important; }
 }

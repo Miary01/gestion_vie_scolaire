@@ -25,7 +25,25 @@ class OrganisationController extends Controller
 
         $this->view('organisation/home', [
             'regions' => (new Region())->all(),
+            'stats'   => $this->statistiques($organisateurId),
         ]);
+    }
+
+    private function statistiques(int $organisateurId): array
+    {
+        $evenements = (new Evenement())->findByOrganisateur($organisateurId);
+        $competitions = (new Competition())->findByOrganisateur($organisateurId);
+
+        $aujourdHui = date('Y-m-d');
+        $evenementsAvenir = array_filter($evenements, fn($e) => substr($e['date_evenement'], 0, 10) >= $aujourdHui);
+        $competitionsAvenir = array_filter($competitions, fn($c) => substr($c['date_competition'], 0, 10) >= $aujourdHui);
+
+        return [
+            'evenements'          => count($evenements),
+            'competitions'        => count($competitions),
+            'evenements_avenir'   => count($evenementsAvenir),
+            'competitions_avenir' => count($competitionsAvenir),
+        ];
     }
 
     private function handlePost(int $organisateurId): void

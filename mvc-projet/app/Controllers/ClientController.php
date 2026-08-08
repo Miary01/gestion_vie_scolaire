@@ -25,13 +25,21 @@ class ClientController extends Controller
 
         $professeurModel = new Professeur();
         $etabModel = new EtabScolaire();
+        $professeursRegion = $professeurModel->allWithExerciceCount();
+        $etablissementsRegion = $etabModel->findByRegion((int) $data['id_region']);
 
         $this->view('client/home', [
             'data'               => $data,
-            'professeur'         => $professeurModel->allWithExerciceCount(),
-            'etablissement'      => $etabModel->findByRegion((int) $data['id_region']),
+            'professeur'         => $professeursRegion,
+            'etablissement'      => $etablissementsRegion,
             'Allprofesseurs'     => $professeurModel->all(),
             'Alletablissements'  => $etabModel->all(),
+            'stats'              => [
+                'professeurs'    => count($professeursRegion),
+                'etablissements' => count($etablissementsRegion),
+                'evenements'     => count((new Evenement())->aVenir()),
+                'competitions'   => count((new Competition())->aVenir()),
+            ],
         ]);
     }
 

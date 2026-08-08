@@ -16,8 +16,8 @@
         }
 
         .exo-prof-card {
-            background: #fff;
-            border: 1px solid rgba(0,0,0,0.08);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
             border-radius: 14px;
             padding: 16px 18px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
@@ -27,19 +27,19 @@
         }
 
         .exo-prof-name { margin: 0; font-weight: 700; font-size: 15px; }
-        .exo-prof-mail { margin: 0; font-size: 12.5px; color: #6b7280; word-break: break-all; }
+        .exo-prof-mail { margin: 0; font-size: 12.5px; color: var(--color-text-muted); word-break: break-all; }
 
         .exo-prof-count {
             margin: 6px 0 10px;
             font-size: 12px;
             font-weight: 600;
-            color: var(--fill-warning, #C97F2E);
+            color: var(--fill-warning);
         }
 
         .exo-voir-btn {
             align-self: flex-start;
-            background: var(--border-strong, #23302A);
-            color: #fff;
+            background: var(--border-strong);
+            color: var(--color-surface);
             border: none;
             border-radius: 8px;
             padding: 8px 14px;
@@ -56,21 +56,21 @@
             align-items: center;
             gap: 12px;
             padding: 12px 8px;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            border-bottom: 1px solid var(--color-border);
         }
         .exo-exercice-item:last-child { border-bottom: none; }
 
         .exo-exercice-icon {
             width: 36px; height: 36px; flex-shrink: 0;
             border-radius: 9px;
-            background: rgba(201,127,46,0.14);
-            color: var(--fill-warning, #C97F2E);
+            background: var(--bg-warning);
+            color: var(--fill-warning);
             display: grid; place-items: center; font-size: 16px;
         }
 
         .exo-exercice-texts { min-width: 0; flex: 1; }
         .exo-exercice-titre { margin: 0; font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .exo-exercice-date { margin: 2px 0 0; font-size: 11.5px; color: #6b7280; }
+        .exo-exercice-date { margin: 2px 0 0; font-size: 11.5px; color: var(--color-text-muted); }
 
         .exo-exercice-actions { display: flex; gap: 8px; flex-shrink: 0; }
         .exo-exercice-actions a {
@@ -78,11 +78,11 @@
             font-size: 12.5px; font-weight: 600; text-decoration: none;
             padding: 6px 10px; border-radius: 7px;
         }
-        .exo-action-voir { background: rgba(53,112,140,0.12); color: var(--fill-accent, #35708C); }
-        .exo-action-telecharger { background: rgba(63,125,92,0.12); color: var(--fill-success, #3F7D5C); }
+        .exo-action-voir { background: var(--bg-accent); color: var(--fill-accent); }
+        .exo-action-telecharger { background: var(--bg-success); color: var(--fill-success); }
 
         .exo-empty, .exo-loading {
-            padding: 30px 10px; text-align: center; color: #6b7280; font-size: 13.5px;
+            padding: 30px 10px; text-align: center; color: var(--color-text-muted); font-size: 13.5px;
         }
     </style>
 </head>
@@ -156,11 +156,23 @@
         <!-- CONTENU -->
         <div id="contenuPrincipal" class="content">
 
-            <div class="welcome-banner" style="background-image:url('https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1200&q=80');">
-                <div class="welcome-banner__content">
-                    <span class="welcome-banner__eyebrow"><i class="ti ti-sparkles"></i> Espace élève</span>
-                    <h1>Prêt·e pour de nouvelles opportunités ?</h1>
-                    <p>Découvrez des professeurs, des établissements, des compétitions et des événements près de chez vous.</p>
+            <!-- STATS -->
+            <div class="stats">
+                <div class="stat-card">
+                    <p class="label">Professeurs de ta région</p>
+                    <p class="value"><?= (int)$stats['professeurs'] ?></p>
+                </div>
+                <div class="stat-card">
+                    <p class="label">Établissements de ta région</p>
+                    <p class="value"><?= (int)$stats['etablissements'] ?></p>
+                </div>
+                <div class="stat-card">
+                    <p class="label">Événements à venir</p>
+                    <p class="value"><?= (int)$stats['evenements'] ?></p>
+                </div>
+                <div class="stat-card">
+                    <p class="label">Compétitions à venir</p>
+                    <p class="value"><?= (int)$stats['competitions'] ?></p>
                 </div>
             </div>
 

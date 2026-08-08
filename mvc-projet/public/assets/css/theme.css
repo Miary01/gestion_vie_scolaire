@@ -9,13 +9,10 @@
    la plateforme.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
-
 :root {
     /* Marque — vert profond, sobre et professionnel */
     --color-primary: #1F6F5C;
-    --color-primary-dark: #123D32;
-    --color-primary-darker: #0C2921;
+    --color-primary-dark: #144A3E;
     --color-primary-light: #E3F2EE;
     --color-primary-soft: #EDF6F3;
 
@@ -48,95 +45,15 @@
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 20px;
-    --radius-xl: 28px;
     --radius-pill: 999px;
 
     /* Ombres */
     --shadow-sm: 0 1px 3px rgba(20, 24, 20, 0.06);
     --shadow-md: 0 8px 24px rgba(20, 24, 20, 0.08);
     --shadow-lg: 0 16px 40px rgba(20, 24, 20, 0.12);
-    --shadow-xl: 0 24px 60px rgba(12, 41, 33, 0.22);
 
     /* Typo */
-    --font-base: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-    --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
-}
-
-/* ==========================================================================
-   Bannière d'accueil — composant partagé par tous les tableaux de bord.
-   Une photo, un dégradé de marque, une salutation et un repère de rôle.
-   ========================================================================== */
-
-.welcome-banner {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    min-height: 168px;
-    padding: 24px 28px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    margin-bottom: 24px;
-    box-shadow: var(--shadow-md);
-}
-
-.welcome-banner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(100deg, rgba(12, 41, 33, 0.92) 0%, rgba(18, 61, 50, 0.72) 45%, rgba(18, 61, 50, 0.28) 100%);
-    z-index: 0;
-}
-
-.welcome-banner__content {
-    position: relative;
-    z-index: 1;
-    max-width: 560px;
-}
-
-.welcome-banner__eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.16);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    padding: 5px 12px;
-    border-radius: var(--radius-pill);
-    margin-bottom: 12px;
-}
-
-.welcome-banner__content h1 {
-    font-family: var(--font-display);
-    font-size: 25px;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    margin: 0 0 6px;
-    color: #fff;
-}
-
-.welcome-banner__content p {
-    font-size: 13.5px;
-    color: rgba(255, 255, 255, 0.85);
-    margin: 0;
-    line-height: 1.5;
-}
-
-@media (max-width: 640px) {
-    .welcome-banner {
-        min-height: 130px;
-        padding: 18px 20px;
-    }
-
-    .welcome-banner__content h1 {
-        font-size: 20px;
-    }
+    --font-base: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
 /* ==========================================================================

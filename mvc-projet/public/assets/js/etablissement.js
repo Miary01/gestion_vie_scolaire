@@ -90,6 +90,44 @@ function escapeHtml(str) {
     return div.innerHTML;
 }
 
+function escapeAttr(str) {
+    return String(str ?? "")
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'")
+        .replace(/\n/g, " ")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+
+// ==================================================
+// CONTACT PAR EMAIL (établissement -> professeur)
+// ==================================================
+function contacterProfesseur(email, nomProfesseur, titreOffre, statut) {
+    let sujet = `À propos de votre candidature — ${titreOffre}`;
+    let message = `Bonjour ${nomProfesseur},\n\n`;
+
+    if (statut === "acceptee") {
+        message += `Nous avons le plaisir de vous informer que votre candidature au poste « ${titreOffre} » a été retenue.\n\n` +
+            `Nous reviendrons vers vous prochainement pour organiser la suite (entretien, prise de poste...).\n\n` +
+            `N'hésitez pas à nous contacter si vous avez des questions.\n\nCordialement.`;
+    } else if (statut === "refusee") {
+        message += `Nous vous remercions pour l'intérêt porté au poste « ${titreOffre} ».\n\n` +
+            `Après étude de votre candidature, nous ne donnerons malheureusement pas suite pour ce poste.\n\n` +
+            `Nous vous souhaitons pleine réussite dans vos recherches.\n\nCordialement.`;
+    } else {
+        message += `Nous avons bien reçu votre candidature au poste « ${titreOffre} » et souhaitons échanger avec vous à ce sujet.\n\n` +
+            `Pourriez-vous nous indiquer vos disponibilités pour un entretien ?\n\nCordialement.`;
+    }
+
+    const url = "https://mail.google.com/mail/?view=cm&fs=1"
+        + "&to=" + encodeURIComponent(email)
+        + "&su=" + encodeURIComponent(sujet)
+        + "&body=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
+}
+
 // ==================================================
 // RECRUTEMENT
 // ==================================================
@@ -117,9 +155,16 @@ function formatDate(dateStr) {
         + " à " + d.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
 }
 
-function renderCandidature(offreId, cand) {
+function renderCandidature(offreId, cand, titreOffre) {
     const statutClasse = "rec-cand-statut--" + cand.statut;
     const statutLabel = STATUT_LABELS[cand.statut] || cand.statut;
+
+    const boutonContact = `
+        <button type="button" class="rec-cand-btn rec-cand-btn--contact"
+                onclick="contacterProfesseur('${escapeAttr(cand.mail_professeur)}', '${escapeAttr(cand.nom_professeur)}', '${escapeAttr(titreOffre)}', '${cand.statut}')">
+            <i class="ti ti-mail"></i> Contacter
+        </button>
+    `;
 
     const actions = cand.statut === "en_attente" ? `
         <div class="rec-cand-actions">
@@ -133,8 +178,14 @@ function renderCandidature(offreId, cand) {
                 <input type="hidden" name="statut" value="refusee">
                 <button type="submit" class="rec-cand-btn rec-cand-btn--refuser">Refuser</button>
             </form>
+            ${boutonContact}
         </div>
-    ` : `<span class="rec-cand-statut ${statutClasse}">${statutLabel}</span>`;
+    ` : `
+        <div class="rec-cand-actions">
+            <span class="rec-cand-statut ${statutClasse}">${statutLabel}</span>
+            ${boutonContact}
+        </div>
+    `;
 
     return `
         <div class="rec-candidature-item">
@@ -154,8 +205,8 @@ function renderOffre(offre) {
 
     const candidatures = offre.candidatures || [];
     const candidaturesHtml = candidatures.length
-        ? candidatures.map(c => renderCandidature(offre.id_offre, c)).join("")
-        : `<p style="font-size:12.5px; color:#9ca3af; margin:0;">Aucune candidature pour le moment.</p>`;
+        ? candidatures.map(c => renderCandidature(offre.id_offre, c, offre.titre)).join("")
+        : `<p style="font-size:12.5px; color:var(--color-text-muted); margin:0;">Aucune candidature pour le moment.</p>`;
 
     return `
         <div class="rec-offre-card" data-search-item data-search-text="${escapeHtml((offre.titre + ' ' + offre.description).toLowerCase())}">
@@ -185,7 +236,42 @@ function afficherRecrutement() {
 
     const listeOffres = offres.length
         ? offres.map(renderOffre).join("")
-        : `<div class="rec-empty">Aucune offre publiée pour le moment.</div>`;
+        : `<div class="rec-empty">
+               <img src="/assets/images/illustration-briefcase.svg" alt="" width="120" height="96" style="display:block;margin:0 auto 10px;">
+               Aucune offre publiée pour le moment.
+           </div>`;
+
+    // Statistiques de recrutement (calculées côté client à partir des
+    // offres et candidatures déjà chargées).
+    const toutesCandidatures = offres.flatMap(o => o.candidatures || []);
+    const nbOuvertes = offres.filter(o => o.statut === "ouverte").length;
+    const nbEnAttente = toutesCandidatures.filter(c => c.statut === "en_attente").length;
+    const nbAcceptees = toutesCandidatures.filter(c => c.statut === "acceptee").length;
+
+    const statsHtml = `
+        <div class="rec-stats">
+            <div class="rec-stat-card rec-stat-card--accent">
+                <p class="rec-stat-label">Offres publiées</p>
+                <p class="rec-stat-value">${offres.length}</p>
+            </div>
+            <div class="rec-stat-card rec-stat-card--accent">
+                <p class="rec-stat-label">Dont ouvertes</p>
+                <p class="rec-stat-value">${nbOuvertes}</p>
+            </div>
+            <div class="rec-stat-card">
+                <p class="rec-stat-label">Candidatures reçues</p>
+                <p class="rec-stat-value">${toutesCandidatures.length}</p>
+            </div>
+            <div class="rec-stat-card rec-stat-card--warning">
+                <p class="rec-stat-label">En attente de réponse</p>
+                <p class="rec-stat-value">${nbEnAttente}</p>
+            </div>
+            <div class="rec-stat-card rec-stat-card--success">
+                <p class="rec-stat-label">Acceptées</p>
+                <p class="rec-stat-value">${nbAcceptees}</p>
+            </div>
+        </div>
+    `;
 
     container.innerHTML = `
         <div class="section-header">
@@ -197,6 +283,8 @@ function afficherRecrutement() {
         <p class="rec-intro">Publie une offre visible par les professeurs de ta région, et gère les candidatures reçues.</p>
 
         ${notice}
+
+        ${statsHtml}
 
         <form class="rec-form" method="POST" action="/etablissement/offre">
             <h4>Publier une nouvelle offre</h4>
