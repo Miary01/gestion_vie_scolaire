@@ -156,6 +156,14 @@
         <!-- CONTENU -->
         <div id="contenuPrincipal" class="content">
 
+            <div class="welcome-banner" style="background-image:url('https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1200&q=80');">
+                <div class="welcome-banner__content">
+                    <span class="welcome-banner__eyebrow"><i class="ti ti-sparkles"></i> Espace élève</span>
+                    <h1>Prêt·e pour de nouvelles opportunités ?</h1>
+                    <p>Découvrez des professeurs, des établissements, des compétitions et des événements près de chez vous.</p>
+                </div>
+            </div>
+
             <!-- COLONNES -->
             <div class="columns">
 

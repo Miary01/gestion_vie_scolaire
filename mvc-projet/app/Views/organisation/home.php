@@ -66,6 +66,14 @@
         <!-- ================= CONTENT ================= -->
         <div class="content">
 
+            <div class="welcome-banner" style="background-image:url('https://images.unsplash.com/photo-1706193589333-da530df63ecf?auto=format&fit=crop&w=1200&q=80');">
+                <div class="welcome-banner__content">
+                    <span class="welcome-banner__eyebrow"><i class="ti ti-flag-3"></i> Espace organisation</span>
+                    <h1>Organisez des événements mémorables</h1>
+                    <p>Créez des compétitions, suivez les participants et faites rayonner vos événements auprès des établissements.</p>
+                </div>
+            </div>
+
             <!-- ================= STATS ================= -->
             <div class="stats">
                 <div class="stat-card">

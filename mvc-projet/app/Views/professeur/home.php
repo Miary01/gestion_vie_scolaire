@@ -55,6 +55,14 @@
 
             <div class="content">
 
+                <div class="welcome-banner" style="background-image:url('https://images.unsplash.com/photo-1758685848174-e061c6486651?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="welcome-banner__content">
+                        <span class="welcome-banner__eyebrow"><i class="ti ti-chalkboard"></i> Espace professeur</span>
+                        <h1>Partagez votre savoir avec vos élèves</h1>
+                        <p>Publiez des exercices, suivez vos candidatures aux offres et restez connecté aux établissements.</p>
+                    </div>
+                </div>
+
                 <div class="stats">
                     <div class="stat-card stat-card--accent">
                         <p class="label">Exercices envoyés</p>

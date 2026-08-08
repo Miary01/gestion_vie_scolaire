@@ -13,8 +13,8 @@
   --shadow-card:var(--shadow-sm);
   --shadow-hover:var(--shadow-md);
 
-  --font-display:'Segoe UI', system-ui, sans-serif;
-  --font-body:'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display:'Baloo 2', system-ui, sans-serif;
+  --font-body:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   --bg-accent:var(--color-primary-light);   --text-accent:var(--color-primary);   --fill-accent:var(--color-primary);
   --bg-warning:var(--color-warning-light);  --text-warning:var(--color-warning);  --fill-warning:var(--color-warning);

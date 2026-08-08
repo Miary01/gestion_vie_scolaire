@@ -224,6 +224,14 @@
         <!-- CONTENU -->
         <div id="contenuPrincipal" class="content">
 
+            <div class="welcome-banner" style="background-image:url('https://images.unsplash.com/photo-1638920329718-ad6f890bb311?auto=format&fit=crop&w=1200&q=80');">
+                <div class="welcome-banner__content">
+                    <span class="welcome-banner__eyebrow"><i class="ti ti-building"></i> Espace établissement</span>
+                    <h1>Recrutez et gérez votre personnel</h1>
+                    <p>Publiez des offres, examinez les candidatures et gardez le contact avec les professeurs de votre région.</p>
+                </div>
+            </div>
+
             <div class="section-header">
                 <h3>Accès rapide</h3>
             </div>

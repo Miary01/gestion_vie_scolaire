@@ -49,6 +49,14 @@
         </div>
       <?php endif; ?>
 
+      <div class="welcome-banner" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80');">
+        <div class="welcome-banner__content">
+          <span class="welcome-banner__eyebrow"><i class="ti ti-shield-check"></i> Administration</span>
+          <h1>Vue d'ensemble de la plateforme</h1>
+          <p>Suivez l'activité de tous les comptes et gérez les utilisateurs depuis un seul endroit.</p>
+        </div>
+      </div>
+
       <div id="apercu">
         <div class="section-header"><h3>Vue d'ensemble de la plateforme</h3></div>
         <div class="stats">
