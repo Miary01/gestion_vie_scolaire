@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-base, 'Segoe UI', system-ui, sans-serif);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-bg, #F7F5F0);
+    position: relative;
+    padding: 24px;
+}
+
+/* CARD */
+.container {
+    background: var(--color-surface, #fff);
+    padding: 45px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--radius-lg, 16px);
+    box-shadow: var(--shadow-lg, 0 15px 30px rgba(0,0,0,0.12));
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* TITLE */
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--color-text, #23302A);
+    letter-spacing: 0.5px;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 18px;
+    position: relative;
+}
+
+label {
+    font-size: 13px;
+    color: var(--color-text-muted, #6B7280);
+}
+
+input {
+    width: 100%;
+    padding: 11px;
+    margin-top: 6px;
+    border: 1px solid var(--color-border, #ddd);
+    border-radius: var(--radius-sm, 8px);
+    outline: none;
+    transition: 0.2s;
+    background: var(--color-bg, #fafafa);
+    font-size: 14px;
+}
+
+input:focus {
+    border-color: var(--color-primary, #1F6F5C);
+    background: var(--color-surface, white);
+    box-shadow: 0 0 0 3px var(--color-primary-light, #E3F2EE);
+}
+
+/* BUTTON */
+.submit-btn {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    background: var(--color-primary, #1F6F5C);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm, 8px);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.submit-btn:hover {
+    background: var(--color-primary-dark, #144A3E);
+    transform: translateY(-1px);
+}
+
+/* LOGIN LINK (top-left) */
+.login-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    background: var(--color-accent, #E08A3E);
+    color: white;
+    padding: 10px 16px;
+    border-radius: var(--radius-pill, 999px);
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: var(--shadow-md, 0 5px 15px rgba(0,0,0,0.2));
+    transition: 0.2s;
+}
+
+.login-link:hover {
+    background: var(--color-accent-dark, #B96D2A);
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+select {
+    width: 100%;
+    padding: 11px;
+    margin-top: 6px;
+    border: 1px solid var(--color-border, #ddd);
+    border-radius: var(--radius-sm, 8px);
+    outline: none;
+    background: var(--color-bg, #fafafa);
+    font-size: 14px;
+    color: var(--color-text, #333);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-text-muted) 50%),
+                      linear-gradient(135deg, var(--color-text-muted) 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(50% - 3px),
+                         calc(100% - 13px) calc(50% - 3px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 35px;
+}
+
+/* focus effect */
+select:focus {
+    border-color: var(--color-primary, black);
+    background-color: var(--color-surface, white);
+    box-shadow: 0 0 0 3px var(--color-primary-light, rgba(0,0,0,0.08));
+}
+
+.suggestions {
+    border: 1px solid var(--color-border, #ccc);
+    border-radius: var(--radius-sm, 8px);
+    max-height: 150px;
+    overflow-y: auto;
+    background: var(--color-surface, white);
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--shadow-md, 0 4px 10px rgba(0,0,0,0.1));
+}
+
+.suggestions div {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.suggestions div:hover {
+    background: var(--color-primary-light, #eee);
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 24px;
+    }
+
+    .login-link {
+        top: 14px;
+        left: 14px;
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+}

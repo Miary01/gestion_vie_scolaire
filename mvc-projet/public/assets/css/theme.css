@@ -1,0 +1,170 @@
+/* ==========================================================================
+   THEME.CSS — Design system partagé par tous les tableaux de bord
+   (admin, client, professeur, établissement, organisation).
+
+   Toutes les couleurs et tailles réutilisables passent par des variables
+   CSS. Les feuilles de style propres à chaque compte (client.css,
+   professeur.css, etc.) consomment ces variables au lieu de couleurs
+   codées en dur, pour garantir une identité visuelle unique sur toute
+   la plateforme.
+   ========================================================================== */
+
+:root {
+    /* Marque — vert profond, sobre et professionnel */
+    --color-primary: #1F6F5C;
+    --color-primary-dark: #144A3E;
+    --color-primary-light: #E3F2EE;
+    --color-primary-soft: #EDF6F3;
+
+    /* Accent — orange chaleureux, pour les actions et mises en avant */
+    --color-accent: #E08A3E;
+    --color-accent-dark: #B96D2A;
+    --color-accent-light: #FBE9D6;
+
+    /* États sémantiques */
+    --color-success: #2F9E6B;
+    --color-success-light: #E4F5EC;
+    --color-danger: #D6473C;
+    --color-danger-light: #FBE6E4;
+    --color-warning: #DB9A2C;
+    --color-warning-light: #FBF1DC;
+    --color-info: #3B7DD8;
+    --color-info-light: #E7F0FC;
+    --color-violet: #7B61C4;
+    --color-violet-light: #EEEAFB;
+
+    /* Neutres */
+    --color-bg: #F7F5F0;
+    --color-surface: #FFFFFF;
+    --color-surface-alt: #F1EFE7;
+    --color-text: #23302A;
+    --color-text-muted: #6B7280;
+    --color-border: #E4E0D5;
+
+    /* Forme */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-pill: 999px;
+
+    /* Ombres */
+    --shadow-sm: 0 1px 3px rgba(20, 24, 20, 0.06);
+    --shadow-md: 0 8px 24px rgba(20, 24, 20, 0.08);
+    --shadow-lg: 0 16px 40px rgba(20, 24, 20, 0.12);
+
+    /* Typo */
+    --font-base: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* ==========================================================================
+   Barre de recherche intelligente — composant partagé (voir search.js)
+   ========================================================================== */
+
+.smart-search {
+    position: relative;
+    max-width: 420px;
+    width: 100%;
+}
+
+.smart-search__input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.smart-search__input-wrap i {
+    position: absolute;
+    left: 14px;
+    color: var(--color-text-muted);
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.smart-search input {
+    width: 100%;
+    padding: 11px 14px 11px 40px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-base);
+    font-size: 14px;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.smart-search input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.smart-search__results {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    max-height: 360px;
+    overflow-y: auto;
+    z-index: 60;
+    display: none;
+}
+
+.smart-search__results.is-open {
+    display: block;
+}
+
+.smart-search__group-label {
+    padding: 8px 14px 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.smart-search__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 9px 14px;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    margin: 0 6px;
+}
+
+.smart-search__item:hover,
+.smart-search__item.is-active {
+    background: var(--color-primary-soft);
+}
+
+.smart-search__item-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.smart-search__item-sub {
+    font-size: 12px;
+    color: var(--color-text-muted);
+}
+
+.smart-search__empty {
+    padding: 16px 14px;
+    font-size: 13px;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+/* ==========================================================================
+   Utilitaires responsives partagés
+   ========================================================================== */
+
+@media (max-width: 640px) {
+    .smart-search {
+        max-width: 100%;
+    }
+}

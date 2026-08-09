@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Laisse passer les vraies ressources statiques (assets/css/js)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Tout le reste passe par le front controller
+RewriteRule ^ index.php [QSA,L]
