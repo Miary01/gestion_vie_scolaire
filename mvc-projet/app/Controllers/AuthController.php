@@ -25,9 +25,6 @@ class AuthController extends Controller
     /** GET / : formulaire de connexion (ex index.php) */
     public function showLogin(): void
     {
-        if (Auth::check()) {
-            $this->redirect('/');
-        }
         $this->view('auth/login');
     }
 
